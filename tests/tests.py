@@ -4,7 +4,7 @@ import logging
 import rich
 from rich.logging import RichHandler
 
-sys.path.append(".")
+sys.path.append("./pyvectorguidance/")
 
 from VectorGuidance import VectorGuidance
 
