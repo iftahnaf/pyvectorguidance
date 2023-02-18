@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 setup(
   name = 'pyvectorguidance',
   packages=setuptools.find_packages(),
-  version = '0.2',
+  version = '0.3',
   license='Apache Software License',
   description = 'Vector Guidance method implemented in Python.',
   long_description=long_description,
