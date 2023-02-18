@@ -15,20 +15,6 @@ class VectorGuidance():
         u = rho_u * (r + tgo*v)/(np.linalg.norm(r + tgo*v)) + np.array([0, 0, gz])
         return u
 
-    def interception_tgo_bounded_drag(self, r, v, vm, k, rho_u, min_tgo=0.01):
-        drho = rho_u - k*np.linalg.norm(vm)**2
-        f = [(drho**2)/4 , 0, -np.linalg.norm(v)**2, -2*np.dot(np.transpose(r), v), -np.linalg.norm(r)**2]
-        roots = np.roots(f)
-        real_sol = np.real(roots)[abs(np.imag(roots)) < 1e-5]
-        real_sol = np.real(real_sol)[np.real(real_sol) > 0]
-        if len(real_sol) > 1:
-            tgo = np.min(real_sol)
-        elif len(real_sol) == 0:
-            tgo = min_tgo
-        else:
-            tgo = real_sol
-        return tgo
-
     def interception_tgo_bounded(self, r, v, rho_u, rho_w, min_tgo=0.01):
         drho = rho_u - rho_w
         f = [(drho**2)/4 , 0, -np.linalg.norm(v)**2, -2*np.dot(np.transpose(r), v), -np.linalg.norm(r)**2]
