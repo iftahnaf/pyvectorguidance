@@ -1,5 +1,5 @@
 # General Info
-Vector Guidance method implemented in Python.
+Vector Guidance methods implemented in Python.
 
 # Install:
 
