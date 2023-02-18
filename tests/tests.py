@@ -19,15 +19,14 @@ logger = logging.getLogger(handle)
 
 r = np.random.rand(3) * np.random.uniform(40, 60, size=1)
 v = np.random.rand(3) * np.random.uniform(5, 15, size=1)
-vm = np.random.rand(3) * np.random.uniform(0, 2, size=1)
 
-k = 0.035
-rho_u = 10
+rho_w = 9.81
+rho_u = 15
 gz = 9.81
 
 def test_interception_bounded():
     try:
-        tgo = VectorGuidance().interception_tgo_bounded(r, v, vm, k, rho_u)[0]
+        tgo = VectorGuidance().interception_tgo_bounded(r, v, rho_u, rho_w)[0]
     except Exception:
         logger.error(" failed - reason: error in tgo calculation!")
         return 1
