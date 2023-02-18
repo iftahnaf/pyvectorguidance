@@ -40,6 +40,9 @@ class VectorGuidance():
 
     def soft_landing_tgo_lq(self):
         pass
+
+    def soft_landing_tgo_bounded(self):
+        pass
     
 class Utilities():
 
