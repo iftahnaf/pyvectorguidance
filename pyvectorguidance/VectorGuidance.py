@@ -39,7 +39,7 @@ class VectorGuidance():
             mprr = min_tgo
         else:
             mprr = real_sol
-        return mprr
+        return mprr[0]
 
     @classmethod
     def interception_controller_bounded(cls, r: np.ndarray, v: np.ndarray, rho_u: float, tgo: float, g: np.ndarray) -> np.ndarray:
