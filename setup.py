@@ -1,11 +1,12 @@
 import setuptools
 from distutils.core import setup
+from pyvectorguidance import __version__
 with open("README.md", "r") as fh:
     long_description = fh.read()
 setup(
   name = 'pyvectorguidance',
   packages=setuptools.find_packages(),
-  version = '1.0',
+  version = __version__,
   license='Apache Software License',
   description = 'Vector Guidance methods implemented in Python.',
   long_description=long_description,
