@@ -6,12 +6,11 @@ Vector Guidance methods for interception and soft landing scenario.
 author: Iftach Naftaly, 2.2023, iftahnaf@gmail.com
 '''
 
+
 class VectorGuidance():
 
-    def __init__(self):
-        pass
-
-    def _minimum_positive_real_root(self, f, min_tgo=0.01):
+    @staticmethod
+    def _minimum_positive_real_root(f: list, min_tgo: float=0.01) -> float:
         '''
         Description
         ----------
@@ -40,9 +39,10 @@ class VectorGuidance():
             mprr = min_tgo
         else:
             mprr = real_sol
-        return mprr
+        return mprr[0]
 
-    def interception_controller_bounded(self, r, v, rho_u, tgo, g):
+    @classmethod
+    def interception_controller_bounded(cls, r: np.ndarray, v: np.ndarray, rho_u: float, tgo: float, g: np.ndarray) -> np.ndarray:
         '''
         Description
         ----------
@@ -71,7 +71,8 @@ class VectorGuidance():
         u = rho_u * (r + tgo*v)/(np.linalg.norm(r + tgo*v)) + g
         return u
 
-    def interception_tgo_bounded(self, r, v, rho_u, rho_w, min_tgo=0.01):
+    @classmethod
+    def interception_tgo_bounded(cls, r: np.ndarray, v: np.ndarray, rho_u: float, rho_w: float, min_tgo: float=0.01) -> float:
         '''
         Description
         ----------
@@ -99,11 +100,13 @@ class VectorGuidance():
 
         '''
         drho = rho_u - rho_w
-        f = [(drho**2)/4 , 0, -np.linalg.norm(v)**2, -2*np.dot(np.transpose(r), v), -np.linalg.norm(r)**2]
-        tgo = self._minimum_positive_real_root(f, min_tgo)
+        f = [(drho**2)/4, 0, -np.linalg.norm(v)**2, -2 *
+             np.dot(np.transpose(r), v), -np.linalg.norm(r)**2]
+        tgo = cls._minimum_positive_real_root(f, min_tgo)
         return tgo
 
-    def interception_controller_lq(self, r, v, tgo, k, g):
+    @classmethod
+    def interception_controller_lq(cls, r: np.ndarray, v: np.ndarray, tgo: float, k: float, g: np.ndarray) -> np.ndarray:
         '''
         Description
         ----------
@@ -132,7 +135,8 @@ class VectorGuidance():
         u = (tgo / (k + (1/3)*tgo**3)) * (r + tgo*v) + g
         return u
 
-    def interception_tgo_lq(self, r, v, um, min_tgo=0.01):
+    @classmethod
+    def interception_tgo_lq(cls, r: np.ndarray, v: np.ndarray, um: float, min_tgo: float=0.01):
         '''
         Description
         ----------
@@ -156,11 +160,13 @@ class VectorGuidance():
                 Time-to-go 
 
         '''
-        f = [(um**2)/9 , 0, -np.linalg.norm(v)**2, -2*np.dot(np.transpose(r), v), -np.linalg.norm(r)**2]
-        tgo = self._minimum_positive_real_root(f, min_tgo)
+        f = [(um**2)/9, 0, -np.linalg.norm(v)**2, -2 *
+             np.dot(np.transpose(r), v), -np.linalg.norm(r)**2]
+        tgo = cls._minimum_positive_real_root(f, min_tgo)
         return tgo
 
-    def soft_landing_controller_lq(self, r, v, tgo, g):
+    @classmethod
+    def soft_landing_controller_lq(cls, r: np.ndarray, v: np.ndarray, tgo: float, g: np.ndarray) -> np.ndarray:
         '''
         Description
         ----------
@@ -187,7 +193,8 @@ class VectorGuidance():
         u = (1 / (tgo**2)) * (6*r + 4*tgo*v) + g
         return u
 
-    def soft_landing_tgo_lq(self, r, v, um, g, min_tgo=0.01):
+    @classmethod
+    def soft_landing_tgo_lq(cls, r: np.ndarray, v: np.ndarray, um: float, g: np.ndarray, min_tgo: float=0.01) -> float:
         '''
         Description
         ----------
@@ -213,20 +220,21 @@ class VectorGuidance():
                 Time-to-go 
 
         '''
-        f1 = [(um**2)/4 , 0, -4*np.linalg.norm(v)**2, -12*np.dot(np.transpose(r), v), -9*np.linalg.norm(r)**2]
-        f2 = [(um**2)/4 , 0, -np.linalg.norm(v)**2, -6*np.dot(np.transpose(r), v), -9*np.linalg.norm(r)**2]
-        tgo_f1 = self._minimum_positive_real_root(f1, min_tgo)
-        tgo_f2 = self._minimum_positive_real_root(f2, min_tgo)
+        f1 = [(um**2)/4, 0, -4*np.linalg.norm(v)**2, -12 *
+              np.dot(np.transpose(r), v), -9*np.linalg.norm(r)**2]
+        f2 = [(um**2)/4, 0, -np.linalg.norm(v)**2, -6 *
+              np.dot(np.transpose(r), v), -9*np.linalg.norm(r)**2]
+        tgo_f1 = cls._minimum_positive_real_root(f1, min_tgo)
+        tgo_f2 = cls._minimum_positive_real_root(f2, min_tgo)
         um_1 = np.linalg.norm((2/tgo_f1**2) * (3*r + 2*tgo_f1*v) + g)
         um_2 = np.linalg.norm((-2/tgo_f1**2) * (3*r + tgo_f1*v) + g)
         return tgo_f1 if um_1 > um_2 else tgo_f2
-    
+
+
 class Utilities():
 
-    def __init__(self):
-        pass
-
-    def acceleration_to_quaternion(self, u, yaw=0):
+    @staticmethod
+    def acceleration_to_quaternion(u: np.ndarray, yaw: float=0.0) -> np.ndarray:
         '''
         Description
         ----------
@@ -246,14 +254,14 @@ class Utilities():
         '''
         projected_xb_des = np.array([np.cos(yaw), np.sin(yaw), 0])
         zb_des = u / np.linalg.norm(u)
-        yb_des = np.cross(zb_des, projected_xb_des) / np.linalg.norm(np.cross(zb_des, projected_xb_des))
-        xb_des = np.cross(yb_des, zb_des) / np.linalg.norm(np.cross(yb_des, zb_des))
+        yb_des = np.cross(zb_des, projected_xb_des) / \
+            np.linalg.norm(np.cross(zb_des, projected_xb_des))
+        xb_des = np.cross(yb_des, zb_des) / \
+            np.linalg.norm(np.cross(yb_des, zb_des))
 
         rotm = np.array([xb_des[0], yb_des[0], zb_des[0]],
                         [xb_des[1], yb_des[1], zb_des[1]],
                         [xb_des[2], yb_des[2], zb_des[2]])
-        
+
         q = R.from_matrix(rotm).as_quat()
         return q
-
-        
