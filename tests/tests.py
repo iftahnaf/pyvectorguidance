@@ -43,7 +43,7 @@ def test_interception_bounded():
         logger.error(" failed - reason: error in controller calculation calculation!")
         return 1
 
-    logger.info(" pass - test_interception_bounded")
+    logger.info("pass - test_interception_bounded")
 
     return 0
 
