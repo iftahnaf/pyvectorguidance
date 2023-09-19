@@ -26,7 +26,7 @@ gz = 9.81
 
 def test_interception_bounded():
     try:
-        tgo = VectorGuidance().interception_tgo_bounded(r, v, rho_u, rho_w)
+        tgo = VectorGuidance.interception_tgo_bounded(r, v, rho_u, rho_w)
         logger.info(f"Tgo = {tgo}")
     except Exception:
         logger.error(" failed - reason: error in tgo calculation!")
@@ -37,7 +37,7 @@ def test_interception_bounded():
         return 1
 
     try:
-        u = VectorGuidance().interception_controller_bounded(r, v, rho_u, tgo, gz)
+        u = VectorGuidance.interception_controller_bounded(r, v, rho_u, tgo, gz)
         logger.info(f"u = {u}")
     except Exception:
         logger.error(" failed - reason: error in controller calculation calculation!")
