@@ -33,14 +33,13 @@ class VectorGuidance():
         roots = np.roots(f)
         real_sol = np.real(roots)[abs(np.imag(roots)) < 1e-5]
         real_sol = np.real(real_sol)[np.real(real_sol) > 0]
-        if len(real_sol) > 1:
-            mprr = np.min(real_sol)
+        if len(real_sol) > 1: 
+            return np.min(real_sol)
         elif len(real_sol) == 0:
-            mprr = min_tgo
+            return min_tgo
         else:
-            mprr = real_sol
-        return mprr[0]
-
+            return real_sol[0]
+        
     @classmethod
     def interception_controller_bounded(cls, r: np.ndarray, v: np.ndarray, rho_u: float, tgo: float, g: np.ndarray) -> np.ndarray:
         '''

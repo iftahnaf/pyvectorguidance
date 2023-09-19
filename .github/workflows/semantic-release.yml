@@ -27,7 +27,7 @@ jobs:
         
     - name: Install Dependencies
       run: |
-        pip install numpy==1.21.5 rich==13.3.1 scipy==1.10.0
+        pip install numpy==1.22.0 rich==13.3.1 scipy==1.10.0
         pip install python-semantic-release
         
     - name: Semantic Release
