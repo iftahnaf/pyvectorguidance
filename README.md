@@ -20,7 +20,7 @@ Vector Guidance are 3D optimal guidance methods for aerial systems.
 
 The guidance laws based on a controller that minimized an finite LQ cost function with form of:
 
-$$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\| dt $$
+$$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\|^2 dt $$
 
 Where:
 - $y$ is the Zero-Effort-Miss variable
