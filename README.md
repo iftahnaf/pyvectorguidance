@@ -20,19 +20,19 @@ Vector Guidance are 3D optimal guidance methods for aerial systems.
 
 The guidance laws based on a controller that minimized an finite LQ cost function with form of:
 
-$$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\| dt  $$
+$$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\| dt $$
 
 Where:
-- $ y $ is the Zero-Effort-Miss variable
-- $ k $ is weight on the integration part of the cost
-- $ u $ is the controller
-- $ t_0 $ is the initial time and $ t_f $ is the final time.
+- $y$ is the Zero-Effort-Miss variable
+- $k$ is weight on the integration part of the cost
+- $u$ is the controller
+- $t_0$ is the initial time and $t_f$ is the final time.
 
-Because the controller that minimized the LQ cost function is unbound, we define the maximum acceleration of the system as $ u_m $, such that:
+Because the controller that minimized the LQ cost function is unbound, we define the maximum acceleration of the system as $u_m$, such that:
 
-$ \|\mathbf{u}\| \leq u_m $ while $ t_0 \leq t \leq t_f $
+$$ \|\mathbf{u}\| \leq u_m $ while $ t_0 \leq t \leq t_f $$
 
-**Note**: The value of $ u_m $ is determine by the physical properties of the system (eg. thrusters saturations, aerodynamical constants)
+**Note**: The value of $u_m$ is determine by the physical properties of the system (eg. thrusters saturations, aerodynamical constants)
 
 
 
