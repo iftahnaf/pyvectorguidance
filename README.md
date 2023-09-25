@@ -30,7 +30,7 @@ Where:
 
 Because the controller that minimized the LQ cost function is unbound, we define the maximum acceleration of the system as $u_m$, such that:
 
-$$ \|\mathbf{u}\| \leq u_m $ while $ t_0 \leq t \leq t_f $$
+$\|\mathbf{u}\| \leq u_m$ while $t_0 \leq t \leq t_f$
 
 **Note**: The value of $u_m$ is determine by the physical properties of the system (eg. thrusters saturations, aerodynamical constants)
 
