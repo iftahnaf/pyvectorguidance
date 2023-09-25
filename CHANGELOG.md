@@ -2,6 +2,53 @@
 
 
 
+## v0.1.1 (2023-09-25)
+
+### Fix
+
+* fix(workflow): semantic release (#17) ([`561a647`](https://github.com/iftahnaf/pyvectorguidance/commit/561a6478662911d9683e1917954bc496b9732819))
+
+* fix(workflows): updating version (#16)
+
+* fix(workflow): updating version
+
+* fix(workflow): updating version ([`1dfcda2`](https://github.com/iftahnaf/pyvectorguidance/commit/1dfcda2af62064b191a523b46dde21ea4c730dc2))
+
+* fix(init.py): change (#14) ([`c2c53e2`](https://github.com/iftahnaf/pyvectorguidance/commit/c2c53e2677c5e483e852a06885a5691749489c8a))
+
+### Unknown
+
+* doc(readme.md): update (#15)
+
+* merging with origin main
+
+* adding docs
+
+* adding docs
+
+* doc(readme) - update
+
+* doc(readme) - update ([`5c50ef5`](https://github.com/iftahnaf/pyvectorguidance/commit/5c50ef5824c84cfb50576d87a6f0eff449c15eeb))
+
+* upgrading numpy (#13) ([`b552bb5`](https://github.com/iftahnaf/pyvectorguidance/commit/b552bb5962bbc55a3b0fb203322d725f6cdb7872))
+
+* fixing mprr bug (#12) ([`b7b05ec`](https://github.com/iftahnaf/pyvectorguidance/commit/b7b05ec77abf4c2a3a2cc6059a6e1644ea6ff1f7))
+
+* fixing python semantic release deps (#10) ([`2da77f7`](https://github.com/iftahnaf/pyvectorguidance/commit/2da77f7078c902c63aa970521235ddf5235c119e))
+
+* Revert &#34;Fix/semantic release (#8)&#34; (#9)
+
+This reverts commit fcfb8a4d6d19e05d4d85c2b10f3d8ad9e9bcd3a8. ([`ad32c37`](https://github.com/iftahnaf/pyvectorguidance/commit/ad32c37fa17761a16a011a200df1aec9273ecc94))
+
+* Fix/semantic release (#8)
+
+* fixing workflow for python semantic release
+
+* installing workflow deps ([`fcfb8a4`](https://github.com/iftahnaf/pyvectorguidance/commit/fcfb8a4d6d19e05d4d85c2b10f3d8ad9e9bcd3a8))
+
+* fixing workflow for python semantic release (#7) ([`99eb8ab`](https://github.com/iftahnaf/pyvectorguidance/commit/99eb8abc07d883d237367fc22b247b6fc8540262))
+
+
 ## v0.1.0 (2023-09-17)
 
 ### Feature
