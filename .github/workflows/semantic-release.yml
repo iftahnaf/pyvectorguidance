@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - main
+      
 
 jobs:
   release:
@@ -28,6 +29,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_ACCESS_TOKEN }}
           PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-        permissions:
-          contents: write
         run: npx semantic-release
+    permissions:
+      contents: write
