@@ -16,7 +16,7 @@ This repository implemented Vector Guidance methods for autonomous systems.
 4. [References](#references)
 
 # About Vector Guidance
-Vector Guidance are 3D optimal guidance methods for aerial systems.
+Vector Guidance are 3D optimal control methods for aerial systems.
 
 The guidance laws based on a controller that minimized an finite LQ cost function with form of:
 
