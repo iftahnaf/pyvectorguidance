@@ -23,9 +23,9 @@ The guidance laws based on a controller that minimized an finite LQ cost functio
 $$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\|^2 dt $$
 
 Where:
-- $y$ is the Zero-Effort-Miss variable
-- $k$ is weight on the integration part of the cost
-- $u$ is the controller
+- $y$ is the Zero-Effort-Miss (ZEM) / Zero-Effort-Velocity (ZEV) variable.
+- $k$ is weight on the integration part of the cost.
+- $u$ is the controller.
 - $t_0$ is the initial time and $t_f$ is the final time.
 
 Because the controller that minimized the LQ cost function is unbound, we define the maximum acceleration of the system as $u_m$, such that:
