@@ -2,7 +2,6 @@ import pyvectorguidance
 import numpy as np
 from dynamics import SixDOFDroneDynamics
 import matplotlib.pyplot as plt
-import pylab
 
 def main():
     drone = SixDOFDroneDynamics()
@@ -14,10 +13,10 @@ def main():
     drone.velocity = np.ones(3,) * np.random.uniform(0, 15, size=1)
 
     target.position = np.ones(3,) * np.random.uniform(100, 200, size=1)
-    target.velocity = np.ones(3,) * np.random.uniform(0, 5, size=1)
+    target.velocity = np.ones(3,) * np.random.uniform(5, 15, size=1)
 
     initial_drone_position = drone.position.copy() - [50, 50, 50]
-    initial_target_position = target.position.copy() + [50, 50, 50]
+    initial_target_position = target.position.copy() + [100, 100, 100]
 
     rho_w = 9.81
     rho_u = 15.0
@@ -57,8 +56,9 @@ def main():
 
         ax.set_title(f"Miss Distance = {dist:.5} [m]\nTgo = {tgo:.6} [sec]\nTotal Scenario Time = {(i  * drone.time_step):.4} [sec]")
 
-        ax.text(drone.position[0] - 25, drone.position[1] - 25, drone.position[2] - 10, "Drone")
-        ax.text(target.position[0] + 25, target.position[1] + 25, target.position[2] + 10, "Target")
+        if i % 2 == 1:
+            ax.text(drone.position[0] - 50, drone.position[1] - 50, drone.position[2] - 10, "Drone")
+            ax.text(target.position[0] + 25, target.position[1] + 25, target.position[2] + 10, "Target")
         
         ax.set_xlim(initial_drone_position[0], initial_target_position[0])
         ax.set_ylim(initial_drone_position[1], initial_target_position[1])
