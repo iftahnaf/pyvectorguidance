@@ -42,20 +42,62 @@ $\|\mathbf{u}\| \leq u_m$ while $t_0 \leq t \leq t_f$
 
 ```python
 
-from VectorGuidance import VectorGuidance
+import pyvectorguidance
+import numpy as np
+from dynamics import SixDOFDroneDynamics
 
-r = np.random.rand(3) * np.random.uniform(40, 60, size=1)
-v = np.random.rand(3) * np.random.uniform(5, 15, size=1)
+def main():
+    drone = SixDOFDroneDynamics()
+    target = SixDOFDroneDynamics()
 
-rho_w = 9.81
-rho_u = 15
-gz = 9.81
+    vg = pyvectorguidance.VectorGuidance()
 
-tgo = VectorGuidance.interception_tgo_bounded(r, v, rho_u, rho_w)
-u = VectorGuidance.interception_controller_bounded(r, v, rho_u, tgo, gz)
+    drone.position = np.ones(3,) * np.random.uniform(0, 20, size=1)
+    drone.velocity = np.ones(3,) * np.random.uniform(0, 15, size=1)
 
+    target.position = np.ones(3,) * np.random.uniform(100, 200, size=1)
+    target.velocity = np.ones(3,) * np.random.uniform(0, 5, size=1)
+
+    rho_w = 9.81
+    rho_u = 15.0
+    gz = 9.81
+    w = np.array([0.0, 0.0, 9.81]) # non maneuvering target
+
+    tgo = 100.0
+    i = 0
+
+    tmp_dist = 1000.0
+    dist = np.linalg.norm(target.position - drone.position)
+    
+    while tgo > 0.01:
+
+        tmp_dist = dist
+
+        r = target.position - drone.position
+        v = target.velocity - drone.velocity
+
+        tgo = vg.interception_tgo_bounded(r, v, rho_u, rho_w)
+        u = vg.interception_controller_bounded(r, v, rho_u, tgo, gz)
+
+        drone.step(u)
+        target.step(w)
+
+        dist = np.linalg.norm(target.position - drone.position)
+
+        if i > 1000 and tmp_dist > dist:
+            break
+        i += 1
+    print(f"Final Miss Distance = {dist:.5} [m], Total Scenario Time = {i  * drone.time_step} [sec]")
+
+    plt.show()
+
+if __name__ == "__main__":
+    main()
 
 ```
+
+![gif](doc/example.gif)
+
 
 # References
 
