@@ -3,10 +3,7 @@ import sys
 import logging
 import rich
 from rich.logging import RichHandler
-
-sys.path.append("./pyvectorguidance/")
-
-from VectorGuidance import VectorGuidance
+from pyvectorguidance.VectorGuidance import VectorGuidance
 
 FORMAT = "%(message)s"
 logging.basicConfig(
