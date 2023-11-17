@@ -10,12 +10,12 @@ def update_frame(ax, drone, target, initial_drone_position, initial_target_posit
     ax.set_title(f"Miss Distance = {dist:.5} [m]\nTgo = {tgo:.6} [sec]\nTotal Scenario Time = {(i  * drone.time_step):.4} [sec]")
 
     if i % 2 == 1:
-        ax.text(drone.position[0] - 10, drone.position[1] - 10, drone.position[2] - 10, "Drone")
-        ax.text(target.position[0] + 10, target.position[1] + 10, target.position[2] + 10, "Target")
+        ax.text(drone.position[0] - 15, drone.position[1] - 15, drone.position[2] - 10, "Drone")
+        ax.text(target.position[0] + 5, target.position[1] + 5, target.position[2] + 5, "Target")
     
-    ax.set_xlim(initial_drone_position[0], target.position[0]+ 10)
-    ax.set_ylim(initial_drone_position[1], target.position[1]+ 10)
-    ax.set_zlim(initial_drone_position[2], target.position[2]+ 10)
+    ax.set_xlim(initial_drone_position[0], target.position[0]+ 30)
+    ax.set_ylim(initial_drone_position[1], target.position[1]+ 30)
+    ax.set_zlim(initial_drone_position[2], target.position[2]+ 30)
 
     if i % 2 == 0:
         ax.cla()
@@ -66,7 +66,7 @@ def main():
     initial_target_position = [target.position[0], target.position[1], target.position[2]]
 
     rho_w = 10.0
-    rho_u = 40.0
+    rho_u = 80.0
     gz = 9.81
 
     tgo = 100.0
