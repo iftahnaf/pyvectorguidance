@@ -18,7 +18,7 @@ This repository implemented Vector Guidance methods for autonomous systems.
 # About Vector Guidance
 Vector Guidance are 3D optimal control methods for aerial systems.
 
-The guidance laws based on a controller that minimized an finite LQ cost function with form of:
+The guidance laws based on a controller that minimized an finite LQ cost function with the form of:
 
 $$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\|^2 dt $$
 
