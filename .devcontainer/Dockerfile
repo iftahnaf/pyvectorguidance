@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
   pyqt5-dev-tools \
   qttools5-dev-tools
 
-RUN pip install matplotlib pyqtgraph control more-itertools==4.1.0 pipreqs scipy rich twine
+RUN pip install matplotlib pyqtgraph control more-itertools==4.1.0 pipreqs scipy rich twine python-semantic-release
 
 ARG USERNAME=dev
 ARG USER_UID=1000

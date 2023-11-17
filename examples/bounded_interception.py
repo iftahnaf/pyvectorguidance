@@ -48,6 +48,16 @@ def plot_tgo(ax, tgo, i):
     ax.set_ylabel(f"Tgo [s]")
     ax.grid()
 
+def update_controllers(controllers, u, w):
+    controllers['drone']['x'].append(u[0])
+    controllers['drone']['y'].append(u[1])
+    controllers['drone']['z'].append(u[2])
+
+    controllers['target']['x'].append(w[0])
+    controllers['target']['y'].append(w[1])
+    controllers['target']['z'].append(w[2])
+    return controllers
+
 def main():
     drone = SixDOFDroneDynamics()
     target = SixDOFDroneDynamics()
@@ -104,13 +114,7 @@ def main():
         u = vg.interception_controller_bounded(r, v, rho_u, tgo, gz)
         w = vg.interception_controller_bounded(r, v, rho_w, tgo, gz)
 
-        controllers['drone']['x'].append(u[0])
-        controllers['drone']['y'].append(u[1])
-        controllers['drone']['z'].append(u[2])
-
-        controllers['target']['x'].append(w[0])
-        controllers['target']['y'].append(w[1])
-        controllers['target']['z'].append(w[2])
+        controllers = update_controllers(controllers, u, w)
 
         drone.step(u)
         target.step(w)
