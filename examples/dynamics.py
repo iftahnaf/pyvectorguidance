@@ -14,6 +14,8 @@ class SixDOFDroneDynamics:
         self.velocity += a * self.time_step
         self.position += self.velocity * self.time_step
 
+    
+
 
 def main():
     drone = SixDOFDroneDynamics()
