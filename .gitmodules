@@ -1,3 +1,5 @@
 [submodule "vectorguidance"]
 	path = vectorguidance
 	url = git@github.com:iftahnaf/vectorguidance.git
+[submodule "third_party/pybind11"]
+	path = third_party/pybind11

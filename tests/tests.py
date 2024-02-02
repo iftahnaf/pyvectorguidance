@@ -3,10 +3,9 @@ import sys
 import logging
 import rich
 from rich.logging import RichHandler
-
-sys.path.append("./pyvectorguidance/")
-
-from VectorGuidance import VectorGuidance
+import sys
+sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/build")
+import libpyvectorguidance
 
 FORMAT = "%(message)s"
 logging.basicConfig(
@@ -24,12 +23,15 @@ rho_w = 9.81
 rho_u = 15
 gz = 9.81
 
+interception_instance = libpyvectorguidance.BoundedInterception()
+
 def test_interception_bounded():
     try:
-        tgo = VectorGuidance.interception_tgo_bounded(r, v, rho_u, rho_w)
+        tgo = interception_instance.bounded_interception_tgo(r, v, 0.01)
         logger.info(f"Tgo = {tgo}")
-    except Exception:
+    except Exception as e:
         logger.error(" failed - reason: error in tgo calculation!")
+        print(e)
         return 1
 
     if tgo < 0:
@@ -37,7 +39,7 @@ def test_interception_bounded():
         return 1
 
     try:
-        u = VectorGuidance.interception_controller_bounded(r, v, rho_u, tgo, gz)
+        u = interception_instance.bounded_interception_controller(r, v, rho_u, tgo, gz)
         logger.info(f"u = {u}")
     except Exception:
         logger.error(" failed - reason: error in controller calculation calculation!")
@@ -48,7 +50,8 @@ def test_interception_bounded():
     return 0
 
 def main():
-    test_interception_bounded()
+    result = test_interception_bounded()
+    sys.exit(result)
 
 if __name__ == "__main__":
     main()
