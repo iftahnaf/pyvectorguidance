@@ -1,0 +1,3 @@
+[submodule "vectorguidance"]
+	path = vectorguidance
+	url = git@github.com:iftahnaf/vectorguidance.git
