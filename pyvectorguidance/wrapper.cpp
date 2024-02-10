@@ -10,7 +10,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(libpyvectorguidance, m){
+PYBIND11_MODULE(pyvectorguidance, m){
     py::class_<SoftLanding>(m, "SoftLanding")
         .def(py::init<>())
         .def("soft_landing_controller_bounded", &SoftLanding::soft_landing_controller_bounded)

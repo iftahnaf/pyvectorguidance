@@ -5,7 +5,7 @@ import rich
 from rich.logging import RichHandler
 import sys
 sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/build")
-import libpyvectorguidance
+import pyvectorguidance
 
 FORMAT = "%(message)s"
 logging.basicConfig(
@@ -23,7 +23,7 @@ rho_w = 9.81
 rho_u = 15
 gz = 9.81
 
-interception_instance = libpyvectorguidance.BoundedInterception()
+interception_instance = pyvectorguidance.BoundedInterception()
 
 def test_interception_bounded():
     try:

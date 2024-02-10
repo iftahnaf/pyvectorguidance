@@ -14,3 +14,6 @@ target_include_directories(pyvectorguidance PRIVATE ${EIGEN3_INCLUDE_DIR})
 
 # Link against pybind11 module and your C++ library
 target_link_libraries(pyvectorguidance PRIVATE pybind11::module vectorguidance)
+
+# Remove the 'lib' prefix from the output library name
+set_target_properties(pyvectorguidance PROPERTIES PREFIX "")
