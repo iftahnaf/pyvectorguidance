@@ -40,6 +40,7 @@ click = ">=7"
 toml = ">=0.10.2"
 rich = ">=10.14.0"
 typing-extensions = { version = ">=4.5.0", python = "<3.11" }
+cython = ">=3.0.8"
 
 [tool.poetry.group.dev.dependencies]
 control="0.9.4"
@@ -52,6 +53,14 @@ rich="13.3.1"
 scipy="1.10.0"
 python-semantic-release = "^7.33.5"
 
+[tool.poetry.build]
+script = "build.py"
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "ninja",
+    "cmake>=3.12",
+]
+build-backend = "setuptools.build_meta"
