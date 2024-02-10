@@ -34,7 +34,7 @@ jobs:
           sudo make install
           cd ../..
           poetry config virtualenvs.create false
-          sudo poetry install
+          poetry install
 
       # Can't use: relekang/python-semantic-release@master because
       # it's running Python 3.7, and Tryceratops requires >=3.8
