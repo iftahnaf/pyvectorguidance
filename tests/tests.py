@@ -39,10 +39,11 @@ def test_interception_bounded():
         return 1
 
     try:
-        u = interception_instance.bounded_interception_controller(r, v, rho_u, tgo, gz)
+        u = interception_instance.bounded_interception_controller(r, v, tgo)
         logger.info(f"u = {u}")
-    except Exception:
+    except Exception as e:
         logger.error(" failed - reason: error in controller calculation calculation!")
+        print(e)
         return 1
 
     logger.info("pass - test_interception_bounded")
