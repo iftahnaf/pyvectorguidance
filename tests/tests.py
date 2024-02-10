@@ -16,8 +16,8 @@ logger = logging.getLogger("rich")
 handle = "main"
 logger = logging.getLogger(handle)
 
-r = np.random.rand(3) * np.random.uniform(40, 60, size=1)
-v = np.random.rand(3) * np.random.uniform(5, 15, size=1)
+r = np.array([11.74149774, 2.33579398, 13.30108823])
+v = np.array([0.56447553, 6.19976263, 5.48968756])
 
 rho_w = 9.81
 rho_u = 15

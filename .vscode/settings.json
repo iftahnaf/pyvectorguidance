@@ -3,5 +3,12 @@
         "pypa",
         "pypi",
         "pyvectorguidance"
-    ]
+    ],
+    "files.associations": {
+        "polynomials": "cpp",
+        "geometry": "cpp",
+        "functional": "cpp",
+        "complex": "cpp",
+        "cmath": "cpp"
+    }
 }
