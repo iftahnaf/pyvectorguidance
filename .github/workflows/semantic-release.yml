@@ -24,6 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install poetry --upgrade pip
+          git submodule update --init --recursive
           cd vectorguidance
           mkdir build
           cd build
