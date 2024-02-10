@@ -31,10 +31,10 @@ jobs:
           sudo apt update && sudo apt install -y libeigen3-dev libgtest-dev cmake
           cmake ..
           make
-          make install
+          sudo make install
           cd ../..
           poetry config virtualenvs.create false
-          poetry install
+          sudo poetry install
 
       # Can't use: relekang/python-semantic-release@master because
       # it's running Python 3.7, and Tryceratops requires >=3.8
