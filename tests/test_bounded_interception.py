@@ -19,11 +19,11 @@ logger = logging.getLogger(handle)
 r = np.array([11.74149774, 2.33579398, 13.30108823])
 v = np.array([0.56447553, 6.19976263, 5.48968756])
 
-rho_w = 9.81
-rho_u = 15
-gz = 9.81
 
 interception_instance = pyvectorguidance.BoundedInterception()
+
+interception_instance.rho_u = 15.0
+interception_instance.rho_w = 9.81
 
 def test_interception_bounded():
     try:
