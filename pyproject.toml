@@ -12,8 +12,11 @@ include = [
     "LICENSE",
 ]
 
+# packages = [
+#     { include = "pyvectorguidance", from = "pyvectorguidance" },
+# ]
 packages = [
-    { include = "pyvectorguidance", from = "pyvectorguidance" },
+    { include = "pyvectorguidance" },
 ]
 
 
@@ -36,10 +39,7 @@ build_command = "pip install poetry && poetry build"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
-click = ">=7"
 toml = ">=0.10.2"
-rich = ">=10.14.0"
-typing-extensions = { version = ">=4.5.0", python = "<3.11" }
 cython = ">=3.0.8"
 
 [tool.poetry.group.dev.dependencies]
@@ -52,6 +52,7 @@ pyparsing="3.1.1"
 rich="13.3.1"
 scipy="1.10.0"
 python-semantic-release = "^7.33.5"
+Cython = "3.0.8"
 
 [tool.poetry.build]
 script = "build.py"
@@ -62,5 +63,10 @@ requires = [
     "wheel",
     "ninja",
     "cmake>=3.12",
+    "Cython>=3.0.8",
+    "pybind11-global>=2.11.1",
+    "poetry>=1.1.0",
+    "python-semantic-release>=7.33.5",
+    "numpy>=1.21.5",
 ]
 build-backend = "setuptools.build_meta"
