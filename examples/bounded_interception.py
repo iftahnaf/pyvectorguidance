@@ -2,17 +2,14 @@ import pyvectorguidance
 import numpy as np
 
 def main():
-    vg = pyvectorguidance.VectorGuidance()
+    r = np.array([11.74149774, 2.33579398, 13.30108823])
+    v = np.array([0.56447553, 6.19976263, 5.48968756])
 
-    r = np.random.rand(3) * np.random.uniform(40, 60, size=1)
-    v = np.random.rand(3) * np.random.uniform(5, 15, size=1)
+    print(pyvectorguidance.__version__)
+    interception_instance = pyvectorguidance.BoundedInterception()
 
-    rho_w = 9.81
-    rho_u = 15.0
-    gz = 9.81
-
-    tgo = vg.interception_tgo_bounded(r, v, rho_u, rho_w)[0]
-    u = vg.interception_controller_bounded(r, v, rho_u, tgo, gz)
+    tgo = interception_instance.interception_tgo_bounded(r, v)
+    u = interception_instance.interception_controller_bounded(r, v, tgo)
 
     print(tgo, u)
 
