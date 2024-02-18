@@ -26,7 +26,7 @@ interception_instance.rho_w = 9.81
 
 def test_interception_bounded():
     try:
-        tgo = interception_instance.bounded_interception_tgo(r, -v, 0.01)
+        tgo = interception_instance.bounded_interception_tgo(r, v, 0.01)
         logger.info(f"Tgo = {tgo}")
     except Exception as e:
         logger.error(" failed - reason: error in tgo calculation!")
@@ -38,7 +38,7 @@ def test_interception_bounded():
         return 1
 
     try:
-        u = interception_instance.bounded_interception_controller(r, -v ,tgo)
+        u = interception_instance.bounded_interception_controller(r, v ,tgo)
         logger.info(f"u = {u}")
     except Exception as e:
         logger.error(" failed - reason: error in controller calculation calculation!")

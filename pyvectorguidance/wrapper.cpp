@@ -12,24 +12,36 @@ namespace py = pybind11;
 PYBIND11_MODULE(pyvectorguidance, m){
     py::class_<SoftLanding>(m, "SoftLanding")
         .def(py::init<>())
-        .def("soft_landing_controller_bounded", [](SoftLanding &sl, py::array_t<double> r, py::array_t<double> v, py::array_t<double> u, double tgo) {
-            // Access the underlying data of r, v, and u
+        .def("soft_landing_controller_bounded", [](SoftLanding &sl, py::array_t<double> r, py::array_t<double> v, double tgo) {
+            // Access the underlying data of r and v
             double *r_ptr = static_cast<double *>(r.request().ptr);
             double *v_ptr = static_cast<double *>(v.request().ptr);
-            double *u_ptr = static_cast<double *>(u.request().ptr);
+
+            // Create an empty NumPy array for u
+            py::array_t<double> u_array = py::array_t<double>({3}); // Assuming u is a 3-element array
+            double *u_ptr = static_cast<double *>(u_array.request().ptr);
 
             // Call your original function with the pointers
             sl.soft_landing_controller_bounded(r_ptr, v_ptr, u_ptr, tgo);
-        }, py::arg("r"), py::arg("v"), py::arg("u"), py::arg("tgo"))
-        .def("soft_landing_controller_lq", [](SoftLanding &sl, py::array_t<double> r, py::array_t<double> v, py::array_t<double> u, double tgo) {
-            // Access the underlying data of r, v, and u
+
+            // Return the populated u_array to Python
+            return u_array;
+        }, py::arg("r"), py::arg("v"), py::arg("tgo"))
+        .def("soft_landing_controller_lq", [](SoftLanding &sl, py::array_t<double> r, py::array_t<double> v, double tgo) {
+            // Access the underlying data of r and v
             double *r_ptr = static_cast<double *>(r.request().ptr);
             double *v_ptr = static_cast<double *>(v.request().ptr);
-            double *u_ptr = static_cast<double *>(u.request().ptr);
+
+            // Create an empty NumPy array for u
+            py::array_t<double> u_array = py::array_t<double>({3}); // Assuming u is a 3-element array
+            double *u_ptr = static_cast<double *>(u_array.request().ptr);
 
             // Call your original function with the pointers
             sl.soft_landing_controller_lq(r_ptr, v_ptr, u_ptr, tgo);
-        }, py::arg("r"), py::arg("v"), py::arg("u"), py::arg("tgo"))
+
+            // Return the populated u_array to Python
+            return u_array;
+        }, py::arg("r"), py::arg("v"), py::arg("tgo"))
         .def("soft_landing_tgo_bounded", [](SoftLanding &sl, py::array_t<double> r, py::array_t<double> v, double min_tgo) {
             // Access the underlying data of r and v
             double *r_ptr = static_cast<double *>(r.request().ptr);
