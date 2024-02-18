@@ -4,7 +4,7 @@ import logging
 import rich
 from rich.logging import RichHandler
 import sys
-sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/build")
+sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/")
 import pyvectorguidance
 
 FORMAT = "%(message)s"

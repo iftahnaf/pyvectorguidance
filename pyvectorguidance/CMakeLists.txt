@@ -5,6 +5,11 @@ set(PYTHON_EXECUTABLE "/usr/bin/python3")
 find_package(pybind11 REQUIRED)
 find_package(Eigen3 REQUIRED)
 
+# Optional: Print diagnostic messages
+message(STATUS "Python executable: ${PYTHON_EXECUTABLE}")
+message(STATUS "pybind11 include directories: ${pybind11_INCLUDE_DIRS}")
+message(STATUS "Eigen3 include directory: ${EIGEN3_INCLUDE_DIR}")
+
 add_library(pyvectorguidance MODULE wrapper.cpp)
 
 # Add include directories for Python and Eigen
@@ -17,3 +22,4 @@ target_link_libraries(pyvectorguidance PRIVATE pybind11::module vectorguidance)
 
 # Remove the 'lib' prefix from the output library name
 set_target_properties(pyvectorguidance PROPERTIES PREFIX "")
+
