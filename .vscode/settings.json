@@ -2,13 +2,16 @@
     "cSpell.words": [
         "pypa",
         "pypi",
-        "pyvectorguidance"
+        "pyvectorguidance",
+        "vectorguidance"
     ],
     "files.associations": {
         "polynomials": "cpp",
         "geometry": "cpp",
         "functional": "cpp",
         "complex": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "core": "cpp",
+        "sparsecore": "cpp"
     }
 }

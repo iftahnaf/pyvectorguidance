@@ -6,63 +6,79 @@
 
 
 # General Info
-This repository implemented Vector Guidance methods for autonomous systems.
+Python wrapper for [vectorguidance](https://github.com/iftahnaf/vectorguidance) project. 
 
-# Table of Contents
+# Install (Currently only support local build and install):
 
-1. [About Vector Guidance](#about-vector-guidance)
-2. [Install](#install)
-3. [Usage](#usage)
-4. [References](#references)
+                cd pyvectorguidance
+                mkdir build
+                cd build
+                cmake ..
+                make
 
-# About Vector Guidance
-Vector Guidance are 3D optimal control methods for aerial systems.
-
-The guidance laws based on a controller that minimized an finite LQ cost function with form of:
-
-$$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\|^2 dt $$
-
-Where:
-- $y$ is the Zero-Effort-Miss (ZEM) / Zero-Effort-Velocity (ZEV) variable.
-- $k$ is weight on the integration part of the cost.
-- $u$ is the controller.
-- $t_0$ is the initial time and $t_f$ is the final time.
-
-Because the controller that minimized the LQ cost function is unbound, we define the maximum acceleration of the system as $u_m$, such that:
-
-$\|\mathbf{u}\| \leq u_m$ while $t_0 \leq t \leq t_f$
-
-**Note**: The value of $u_m$ is determine by the physical properties of the system (eg. thrusters saturations, aerodynamical constants)
-
-
-
-# Install:
-
-        pip install pyvectorguidance
-
-# Usage
+# Usage:
 
 ```python
+import numpy as np
+import sys
+import logging
+import rich
+from rich.logging import RichHandler
+import sys
+sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/build")
+import pyvectorguidance
 
-from VectorGuidance import VectorGuidance
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level="NOTSET", format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+)
+logger = logging.getLogger("rich")
 
-r = np.random.rand(3) * np.random.uniform(40, 60, size=1)
-v = np.random.rand(3) * np.random.uniform(5, 15, size=1)
+handle = "main"
+logger = logging.getLogger(handle)
 
-rho_w = 9.81
-rho_u = 15
-gz = 9.81
+r = np.array([11.74149774, 2.33579398, 13.30108823])
+v = np.array([0.56447553, 6.19976263, 5.48968756])
 
-tgo = VectorGuidance.interception_tgo_bounded(r, v, rho_u, rho_w)
-u = VectorGuidance.interception_controller_bounded(r, v, rho_u, tgo, gz)
+print(pyvectorguidance)
 
+interception_instance = pyvectorguidance.BoundedInterception()
+
+interception_instance.rho_u = 15.0
+interception_instance.rho_w = 9.81
+
+def test_interception_bounded():
+    try:
+        tgo = interception_instance.bounded_interception_tgo(r, v, 0.01)
+        logger.info(f"Tgo = {tgo}")
+    except Exception as e:
+        logger.error(" failed - reason: error in tgo calculation!")
+        print(e)
+        return 1
+
+    if tgo < 0:
+        logger.fatal(" fatal - reason: error in tgo calculation!")
+        return 1
+
+    try:
+        u = interception_instance.bounded_interception_controller(r, v ,tgo)
+        logger.info(f"u = {u}")
+    except Exception as e:
+        logger.error(" failed - reason: error in controller calculation calculation!")
+        print(e)
+        return 1
+
+    logger.info("pass - test_interception_bounded")
+
+    return 0
+
+def main():
+    result = test_interception_bounded()
+    sys.exit(result)
+
+if __name__ == "__main__":
+    main()
 
 ```
 
-# References
-
-1. S. Gutman and S. Rubinsky, "3D-nonlinear vector guidance and exo-atmospheric interception," in IEEE Transactions on Aerospace and Electronic Systems, vol. 51, no. 4, pp. 3014-3022, Oct. 2015, doi: 10.1109/TAES.2015.140204.
-
-2. Gutman, S. (2019). Exoatmospheric Interception via Linear Quadratic Optimization. Journal of Guidance, Control, and Dynamics.
-
-3. S. Gutman, "Rendezvous and Soft Landing in Closed Form via LQ Optimization," 2019 27th Mediterranean Conference on Control and Automation (MED), Akko, Israel, 2019, pp. 536-540, doi: 10.1109/MED.2019.8798572.
+**NOTE**: Installation with pip and GitHub CI is in working process.

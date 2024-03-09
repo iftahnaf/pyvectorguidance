@@ -19,6 +19,7 @@ logger = logging.getLogger(handle)
 r = np.array([11.74149774, 2.33579398, 13.30108823])
 v = np.array([0.56447553, 6.19976263, 5.48968756])
 
+print(pyvectorguidance)
 
 interception_instance = pyvectorguidance.BoundedInterception()
 
@@ -39,7 +40,7 @@ def test_interception_bounded():
         return 1
 
     try:
-        u = interception_instance.bounded_interception_controller(r, v, tgo)
+        u = interception_instance.bounded_interception_controller(r, v ,tgo)
         logger.info(f"u = {u}")
     except Exception as e:
         logger.error(" failed - reason: error in controller calculation calculation!")

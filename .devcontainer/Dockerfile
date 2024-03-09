@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
   python3-pip \
   nano \
   wget \
+  python3-pybind11 \
+  libgtest-dev \
   curl \
   srecord \
   python3-opencv \

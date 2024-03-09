@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 build/
 pyvectorguidance.egg-info/
+dist/
+**/*.so
+```
