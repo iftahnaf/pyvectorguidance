@@ -4,7 +4,7 @@ import logging
 import rich
 from rich.logging import RichHandler
 import sys
-sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/")
+sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/build")
 import pyvectorguidance
 
 FORMAT = "%(message)s"
@@ -18,6 +18,8 @@ logger = logging.getLogger(handle)
 
 r = np.array([11.74149774, 2.33579398, 13.30108823])
 v = np.array([0.56447553, 6.19976263, 5.48968756])
+
+print(pyvectorguidance)
 
 interception_instance = pyvectorguidance.BoundedInterception()
 
