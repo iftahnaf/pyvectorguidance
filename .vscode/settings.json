@@ -1,4 +1,13 @@
 {
+
+    "python.analysis.memory.keepLibraryAst": true,
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.autoComplete.extraPaths": [
+     "/workspaces/pyvectorguidance/pyvectorguidance/build",
+    ],
+    "python.analysis.extraPaths": [
+        "/workspaces/pyvectorguidance/pyvectorguidance/build",
+    ],
     "cSpell.words": [
         "pypa",
         "pypi",
