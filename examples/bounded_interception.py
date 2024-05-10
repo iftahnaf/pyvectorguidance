@@ -1,5 +1,8 @@
-import pyvectorguidance
 import numpy as np
+import sys
+sys.path.append("/workspaces/pyvectorguidance/pyvectorguidance/build")
+import pyvectorguidance
+
 
 def main():
     r = np.array([11.74149774, 2.33579398, 13.30108823])
@@ -8,8 +11,8 @@ def main():
     print(pyvectorguidance.__spec__)
     interception_instance = pyvectorguidance.BoundedInterception()
 
-    tgo = interception_instance.interception_tgo_bounded(r, v)
-    u = interception_instance.interception_controller_bounded(r, v, tgo)
+    tgo = interception_instance.bounded_interception_tgo(r, v, 0.01)
+    u = interception_instance.bounded_interception_controller(r, v ,tgo)
 
     print(tgo, u)
 
